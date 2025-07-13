@@ -31,9 +31,9 @@ namespace CoffeeCafeProject
         private void getAllMemberToListView()
         {
             // Connect String เพื่อเชื่อมต่อฐานข้อมูล ตามยี่ห้อของฐานข้อมูลที่ใช้
-            string connectionString = @"Server=DESKTOP-9U4FO0V\SQLEXPRESS;Database=coffee_cafe_db;Trusted_Connection=True";
+            //string connectionString = @"Server=DESKTOP-9U4FO0V\SQLEXPRESS;Database=coffee_cafe_db;Trusted_Connection=True";
             // Create connection object ไปยังฐานข้อมูลที่ต้องการ
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            using (SqlConnection sqlConnection = new SqlConnection(ShareResource.connectionString))
             {
                 try
                 {
@@ -106,9 +106,9 @@ namespace CoffeeCafeProject
             else
             {
                 // Connect String เพื่อเชื่อมต่อฐานข้อมูล ตามยี่ห้อของฐานข้อมูลที่ใช้
-                string connectionString = @"Server=DESKTOP-9U4FO0V\SQLEXPRESS;Database=coffee_cafe_db;Trusted_Connection=True";
+                //string connectionString = @"Server=DESKTOP-9U4FO0V\SQLEXPRESS;Database=coffee_cafe_db;Trusted_Connection=True";
                 // Create connection object ไปยังฐานข้อมูลที่ต้องการ
-                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                using (SqlConnection sqlConnection = new SqlConnection(ShareResource.connectionString))
                 {
                     try
                     {
@@ -180,16 +180,16 @@ namespace CoffeeCafeProject
             else
             {
                 // Connect String เพื่อเชื่อมต่อฐานข้อมูล ตามยี่ห้อของฐานข้อมูลที่ใช้
-                string connectionString = @"Server=DESKTOP-9U4FO0V\SQLEXPRESS;Database=coffee_cafe_db;Trusted_Connection=True";
+                //string connectionString = @"Server=DESKTOP-9U4FO0V\SQLEXPRESS;Database=coffee_cafe_db;Trusted_Connection=True";
                 // Create connection object ไปยังฐานข้อมูลที่ต้องการ
-                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                using (SqlConnection sqlConnection = new SqlConnection(ShareResource.connectionString))
                 {
                     try
                     {
                         sqlConnection.Open(); // เปิดการเชื่อมต่อกับฐานข้อมูล
                         SqlTransaction sqlTransaction = sqlConnection.BeginTransaction();
                         // สร้างคำสั่ง SQL สำหรับ UPDATE ข้อมูลสมาชิก
-                        string strSQL = "UPDATE member_tb SET memberPhone = @memberPhone, memberName = @memberName " +
+                        string strSQL = "UPDATE member_tb SET memberPhone = @memberPhone, memberName = @memberName, memberScore = @memberScore " +
                             "WHERE memberId = @memberId";
                         // สร้าง SqlCommand เพื่อรันคำสั่ง SQL
                         using (SqlCommand sqlCommand = new SqlCommand(strSQL, sqlConnection, sqlTransaction))
@@ -197,6 +197,7 @@ namespace CoffeeCafeProject
                             sqlCommand.Parameters.Add("@memberId", SqlDbType.Int).Value = int.Parse(tbMemberId.Text);
                             sqlCommand.Parameters.Add("@memberPhone", SqlDbType.NVarChar, 50).Value = tbMemberPhone.Text;
                             sqlCommand.Parameters.Add("@memberName", SqlDbType.NVarChar, 100).Value = tbMemberName.Text;
+                            sqlCommand.Parameters.Add("@memberScore", SqlDbType.Int).Value = 0;
 
                             sqlCommand.ExecuteNonQuery();
                             sqlTransaction.Commit();
@@ -220,8 +221,8 @@ namespace CoffeeCafeProject
             if (MessageBox.Show("ต้องการลบเมนูหรือไม่", "ยืนยัน", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 // ลบข้อมูลจากฐานข้อมูล
-                string connectionString = @"Server=DESKTOP-9U4FO0V\SQLEXPRESS;Database=coffee_cafe_db;Trusted_Connection=True";
-                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                //string connectionString = @"Server=DESKTOP-9U4FO0V\SQLEXPRESS;Database=coffee_cafe_db;Trusted_Connection=True";
+                using (SqlConnection sqlConnection = new SqlConnection(ShareResource.connectionString))
                 {
                     try
                     {

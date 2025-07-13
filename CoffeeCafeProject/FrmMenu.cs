@@ -57,9 +57,9 @@ namespace CoffeeCafeProject
         private void getAllMenuToListView()
         {
             // Connect String เพื่อเชื่อมต่อฐานข้อมูล ตามยี่ห้อของฐานข้อมูลที่ใช้
-            string connectionString = @"Server=DESKTOP-9U4FO0V\SQLEXPRESS;Database=coffee_cafe_db;Trusted_Connection=True";
+            //string connectionString = @"Server=DESKTOP-9U4FO0V\SQLEXPRESS;Database=coffee_cafe_db;Trusted_Connection=True";
             // Create connection object ไปยังฐานข้อมูลที่ต้องการ
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            using (SqlConnection sqlConnection = new SqlConnection(ShareResource.connectionString))
             {
                 try
                 {
@@ -207,10 +207,10 @@ namespace CoffeeCafeProject
             {
                 // บันทึกลง DB 
                 // สร้าง connection string ไปยังฐานข้อมูลที่ต้องการ
-                string connectionString = @"Server=DESKTOP-9U4FO0V\SQLEXPRESS;Database=coffee_cafe_db;Trusted_Connection=True";
+                //string connectionString = @"Server=DESKTOP-9U4FO0V\SQLEXPRESS;Database=coffee_cafe_db;Trusted_Connection=True";
 
                 // Create connection object ไปยังฐานข้อมูลที่ต้องการ
-                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                using (SqlConnection sqlConnection = new SqlConnection(ShareResource.connectionString))
                 {
                     try
                     {
@@ -310,8 +310,8 @@ namespace CoffeeCafeProject
             if (MessageBox.Show("ต้องการลบเมนูหรือไม่", "ยืนยัน", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 // ลบข้อมูลจากฐานข้อมูล
-                string connectionString = @"Server=DESKTOP-9U4FO0V\SQLEXPRESS;Database=coffee_cafe_db;Trusted_Connection=True";
-                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                //string connectionString = @"Server=DESKTOP-9U4FO0V\SQLEXPRESS;Database=coffee_cafe_db;Trusted_Connection=True";
+                using (SqlConnection sqlConnection = new SqlConnection(ShareResource.connectionString))
                 {
                     try
                     {
@@ -359,10 +359,10 @@ namespace CoffeeCafeProject
             {
                 // บันทึกลง DB 
                 // สร้าง connection string ไปยังฐานข้อมูลที่ต้องการ
-                string connectionString = @"Server=DESKTOP-9U4FO0V\SQLEXPRESS;Database=coffee_cafe_db;Trusted_Connection=True";
+                //string connectionString = @"Server=DESKTOP-9U4FO0V\SQLEXPRESS;Database=coffee_cafe_db;Trusted_Connection=True";
 
                 // Create connection object ไปยังฐานข้อมูลที่ต้องการ
-                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                using (SqlConnection sqlConnection = new SqlConnection(ShareResource.connectionString))
                 {
                     try
                     {
