@@ -497,7 +497,35 @@ namespace CoffeeCafeProject
 
         private void lvOrderMenu_ItemActivate(object sender, EventArgs e)
         {
-            // Double click ที่รายการ แล้วเอาออกจาก ListView item เอาแต้มออก และยอดรวมลดลงด้วย 
+            if (MessageBox.Show("ต้องการลบเมนูนี้หรือไม่?", "ยืนยัน", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (lvOrderMenu.SelectedItems.Count > 0)
+                {
+                    // ดึงรายการที่เลือก
+                    ListViewItem selectedItem = lvOrderMenu.SelectedItems[0];
+
+                    // ดึงราคาจาก SubItem ที่สอง
+                    float itemPrice = float.Parse(selectedItem.SubItems[1].Text);
+
+                    // ลบรายการออกจาก ListView
+                    lvOrderMenu.Items.Remove(selectedItem);
+
+                    // ลดราคาจากยอดรวม
+                    float currentTotal = float.Parse(lbOrderPay.Text);
+                    currentTotal -= itemPrice;
+                    lbOrderPay.Text = currentTotal.ToString("0");
+
+                    // ถ้าเป็นสมาชิกให้ลดแต้มลง 1 แต่ไม่ต่ำกว่า 0
+                    if (tbMemberName.Text != "(ชื่อสมาชิก)")
+                    {
+                        int currentScore = int.Parse(lbMemberScore.Text);
+                        currentScore = Math.Max(0, currentScore - 1);
+                        lbMemberScore.Text = currentScore.ToString();
+                    }
+                }
+            }
+
+            
         }
     }
 }
